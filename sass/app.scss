@@ -142,16 +142,16 @@ header {
     }
 
     .icon-wrapper{
-        width:20%;
         position:absolute;
         top:50%;
         left:var(--bs-gutter-x, 2rem);
         transform: translateY(-50%);
         z-index: 10;
-        min-width: 120px;
+        width:120px;
 
         @include tablet {
             left:5%;
+            width:200px;
         }
 
         img {
