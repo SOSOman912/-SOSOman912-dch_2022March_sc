@@ -897,8 +897,16 @@ ul {
         grid-template-columns: repeat(5,1fr);        
     }
     &.nine {
-        grid-template-columns: repeat(9,1fr);        
         width:100%;
+        grid-template-columns: repeat(4,1fr);  
+
+        @include high-res-mobile {
+            grid-template-columns: repeat(6,1fr);  
+        }
+
+        @include desktop {
+            grid-template-columns: repeat(9,1fr);        
+        }
     }
     display:grid;
     grid-template-columns: repeat(4,1fr);
