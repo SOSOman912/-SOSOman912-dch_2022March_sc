@@ -17,10 +17,6 @@ gulp.task('minify', done => {
     .pipe(uglify())
     .pipe(gulp.dest('./js/'));
 
-    gulp.src('./js/compiled.*.js')
-    .pipe(uglify())
-    .pipe(gulp.dest('./js/'));
-
     done();
 })
 
@@ -47,21 +43,12 @@ gulp.task('process-js', done => {
         './js/jquery-1.11.2.min.js',
         './js/jquery.fancybox.min.js',
         './js/swiper.min.js',
+        './js/init.js',
     ])
     .pipe(sourcemaps.init())   
     // .pipe(cssnano()) 
     .pipe(sourcemaps.write())
     .pipe(concat('all.js'))
-    .pipe(gulp.dest('./js/'))
-    .pipe(livereload());
-
-    gulp.src([
-        './js/home.js'
-    ])
-    .pipe(sourcemaps.init())   
-    // .pipe(cssnano()) 
-    .pipe(sourcemaps.write())
-    .pipe(concat('compiled.home.js'))
     .pipe(gulp.dest('./js/'))
     .pipe(livereload());
 
@@ -77,7 +64,7 @@ gulp.task('default', () => {
         gulp.series('process-sass')
     )
     gulp.watch(
-        ['./js/home.js'],
+        ['./js/init.js'],
         { ignoreInitial: false },
         gulp.series('process-js')
     )
