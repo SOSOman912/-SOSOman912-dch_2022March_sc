@@ -8,14 +8,17 @@ const autoprefixer = require('gulp-autoprefixer');
 const livereload = require('gulp-livereload');
 
 gulp.task('minify', done => {
+    gulp.series('process-js')
     gulp.src('./css/app.css')
     .pipe(cssnano())
     .pipe(gulp.dest('./css/'));
+
     gulp.src('./js/all.js')
-    .pipe(cssnano())
+    .pipe(uglify())
     .pipe(gulp.dest('./js/'));
-    gulp.src('./js/complied.*.js')
-    .pipe(cssnano())
+
+    gulp.src('./js/compiled.*.js')
+    .pipe(uglify())
     .pipe(gulp.dest('./js/'));
 
     done();
@@ -58,7 +61,7 @@ gulp.task('process-js', done => {
     .pipe(sourcemaps.init())   
     // .pipe(cssnano()) 
     .pipe(sourcemaps.write())
-    .pipe(concat('complied.home.js'))
+    .pipe(concat('compiled.home.js'))
     .pipe(gulp.dest('./js/'))
     .pipe(livereload());
 
